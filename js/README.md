@@ -2,9 +2,8 @@
 
 ## To run the tests
 
-* Install `yarn`
-* Run `yarn install` once
-* Run `yarn test`
+* Run `npm install` once
+* Run `npm run test`
 
 ## To run the main application
 
