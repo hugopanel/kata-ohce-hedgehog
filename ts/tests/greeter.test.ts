@@ -4,7 +4,6 @@ import Greeter from "../greeter"
 import {SystemClock} from "../greeter"
 
 test('should say "good night" at midnight', () => {
-
   const systemClock = new SystemClock() as jest.Mocked<SystemClock>;
   systemClock.currentHour = jest.fn<() => number>().mockReturnValue(0);
   const greeter = new Greeter();

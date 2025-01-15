@@ -1,7 +1,7 @@
 import * as readline from 'node:readline/promises'
 import { reverse } from './ohce'
 
-class ConsoleInteractor {
+export class ConsoleInteractor {
   reader: readline.Interface
 
   constructor() {
