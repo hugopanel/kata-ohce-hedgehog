@@ -1,15 +1,19 @@
-export class SystemClock {
+export interface ISystemClock {
+  currentHour(): number;
+}
+
+export class SystemClock implements ISystemClock {
   currentHour() {
-    const date = new Date()
-    return date.getHours()
+    const date = new Date();
+    return date.getHours();
   }
 }
 
 export default class Greeter {
-  clock: SystemClock
+  clock: SystemClock;
 
-  constructor() {
-    this.clock = new SystemClock()
+  constructor(systemClock: ISystemClock) {
+    this.clock = systemClock;
   }
 
   greet() {
