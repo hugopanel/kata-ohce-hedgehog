@@ -1,5 +1,5 @@
 import { expect, test } from "@jest/globals";
-import UI from "../ui";
+import UI, { IConsoleInteractor } from "../ui";
 import assert from "node:assert";
 
 import * as readline from "node:readline/promises";
@@ -17,24 +17,18 @@ test("main loop", async () => {
     - That was a palindrome!
    */
 
-  class MockConsoleInteractor {
-    reader: readline.Interface;
+  class MockConsoleInteractor implements IConsoleInteractor {
     input: string[] = ["hello", "oto", "quit"];
     output: string[] = [];
 
-    constructor() {
-      this.reader = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-      });
-    }
+    constructor() {}
 
     async readInput(): Promise<string> {
       return this.input.shift() || "";
     }
 
     close() {
-      this.reader.close();
+      return null;
     }
 
     printMessage(message: string) {
@@ -42,8 +36,7 @@ test("main loop", async () => {
     }
   }
 
-  const ui = new UI();
-  ui.interactor = new MockConsoleInteractor();
+  const ui = new UI(new MockConsoleInteractor());
 
   await ui.mainLoop();
 
